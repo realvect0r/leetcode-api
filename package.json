@@ -1,6 +1,6 @@
 {
     "name": "leetcode-api",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Leetcode api with typescript and full async",
     "keywords": [
         "typescript",
