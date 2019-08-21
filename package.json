@@ -1,0 +1,38 @@
+{
+    "name": "leetcode-api",
+    "version": "1.0.0",
+    "description": "Leetcode api with typescript and full async",
+    "keywords": [
+        "typescript",
+        "leetcode",
+        "api",
+        "async",
+        "promise"
+    ],
+    "author": {
+        "name": "VEct0r",
+        "email": "twskec@gmail.com",
+        "url": "https://vect0r.me"
+    },
+    "license": "MIT",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "dependencies": {
+        "@types/request-promise-native": "^1.0.16",
+        "graphql-request": "^1.8.2",
+        "request-promise-native": "^1.0.7",
+        "type-graphql": "^0.17.4"
+    },
+    "scripts": {
+        "build": "tsc -p tsconfig.json",
+        "start": "node dist",
+        "lint": "eslint src --ext .ts"
+    },
+    "devDependencies": {
+        "typescript": "^3.5.3",
+        "@typescript-eslint/parser": "^2.0.0",
+        "@typescript-eslint/eslint-plugin": "^2.0.0",
+        "eslint": "^6.2.0",
+        "eslint-config-google": "^0.13.0"
+    }
+}
