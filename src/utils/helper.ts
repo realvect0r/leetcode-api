@@ -13,6 +13,9 @@ class Helper {
     }
 
     static parseCookie(cookies: Array<string>, key: string): string {
+        if (!cookies) {
+            return "";
+        }
         for (let ix = 0; ix !== cookies.length; ++ix) {
             const result = cookies[ix].match(new RegExp(`${key}=(.+?);`));
             if (result) {

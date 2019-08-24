@@ -22,7 +22,7 @@ class Submission {
         this.memory = response.match(/memory:\s'([^']*)'/)[1];
         this.runtime = response.match(/runtime:\s'([^']*)'/)[1];
         this.status = Helper.submissionStatusMap(response.match(/parseInt\('(\d+)', 10/)[1]);
-        this.code = response.match(/submissionCode:\s'([^']*)'/)[1];
+        this.code = JSON.parse(`"${response.match(/submissionCode:\s'([^']*)'/)[1]}"`);
         // TODO : add submit time parse
         // <div id="submitted-time">Submitted: <strong><span id="result_date">33 minutes ago</span></strong></div>
         return this;
