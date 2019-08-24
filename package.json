@@ -25,7 +25,7 @@
         "type-graphql": "^0.17.4"
     },
     "scripts": {
-        "build": "tsc -p tsconfig.json",
+        "build": "rm -rf dist && tsc -p tsconfig.json",
         "start": "node dist",
         "lint": "eslint src --ext .ts"
     },
