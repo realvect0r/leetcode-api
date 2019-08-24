@@ -38,5 +38,20 @@ enum SubmissionStatus {
     "Time Limit Exceeded",
 }
 
-export { HttpRequestOptions, GraphQLRequestOptions, Credit, ProblemStatus, ProblemDifficulty, SubmissionStatus, };
+enum EndPoint {
+    "US",
+    "CN",
+}
+
+interface Uris {
+    base: string;
+    login: string;
+    graphql: string;
+    problemsAll: string;
+    problem: string;
+    submit: string;
+    submission: string;
+}
+
+export { HttpRequestOptions, GraphQLRequestOptions, Credit, ProblemStatus, ProblemDifficulty, SubmissionStatus, EndPoint, Uris, };
 

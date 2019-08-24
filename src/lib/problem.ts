@@ -1,9 +1,14 @@
 import Helper from "../utils/helper";
-import { ProblemDifficulty, ProblemStatus } from "../utils/interfaces";
-import Config from "./config";
+import { ProblemDifficulty, ProblemStatus, Uris } from "../utils/interfaces";
 import Submission from "./submission";
 
 class Problem {
+
+    static uris: Uris;
+
+    static setUris(uris: Uris): void {
+        Problem.uris = uris;
+    }
 
     constructor(
         readonly slug: string,
@@ -127,7 +132,7 @@ class Problem {
 
     async submit(lang: string, code: string): Promise<Submission> {
         const response = await Helper.HttpRequest({
-            url: Config.uri.submit.replace("$slug", this.slug),
+            url: Problem.uris.submit.replace("$slug", this.slug),
             method: "POST",
             body: {
                 lang: lang,

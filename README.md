@@ -14,7 +14,8 @@
     // Login 
     const leetcode: Leetcode = await Leetcode.build(
         "your username",
-        "yout password"
+        "yout password",
+        EndPoint.US     // or EndPoint.CN
     );
 
     // Get a special problem
@@ -64,6 +65,8 @@
 I especially recommend you fetch base properties first because of the large number of problems. Then call `Problem.detail()` or `Submission.detail()` fetch all properties of them.
 
 ## TODO
+* [X] ~~*Support Leetcode CN.*~~ [2019-08-24]
+* [ ] Fetch more user profile.
 * [ ] Fully parse submission status type.
 * [ ] Support problems filter by categories.
 * [ ] Support problems filter by companies.

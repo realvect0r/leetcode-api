@@ -1,8 +1,13 @@
 import Helper from "../utils/helper";
-import { SubmissionStatus } from "../utils/interfaces";
-import Config from "./config";
+import { SubmissionStatus, Uris } from "../utils/interfaces";
 
 class Submission {
+    static uris: Uris;
+
+    static setUris(uris: Uris): void {
+        Submission.uris = uris;
+    }
+
     constructor(
         public id: number,
         public isPending?: string,
@@ -16,7 +21,7 @@ class Submission {
 
     async detail(): Promise<Submission> {
         const response = await Helper.HttpRequest({
-            url: Config.uri.submission.replace("$id", this.id.toString()),
+            url: Submission.uris.submission.replace("$id", this.id.toString()),
         });
         this.lang = response.match(/getLangDisplay:\s'([^']*)'/)[1];
         this.memory = response.match(/memory:\s'([^']*)'/)[1];

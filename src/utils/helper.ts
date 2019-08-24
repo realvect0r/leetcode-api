@@ -1,15 +1,23 @@
 import { GraphQLClient } from 'graphql-request';
 import Request from 'request-promise-native';
 import Config from '../lib/config';
-import { Credit, GraphQLRequestOptions, HttpRequestOptions, ProblemDifficulty, ProblemStatus, SubmissionStatus } from './interfaces';
+import Leetcode from '../lib/leetcode';
+import Problem from '../lib/problem';
+import Submission from '../lib/submission';
+import { Credit, EndPoint, GraphQLRequestOptions, HttpRequestOptions, ProblemDifficulty, ProblemStatus, SubmissionStatus, Uris } from './interfaces';
 
 
 class Helper {
 
     static credit: Credit;
+    static uris: Uris;
 
     static setCredit(credit: Credit): void {
         Helper.credit = credit;
+    }
+
+    static setUris(uris: Uris): void {
+        Helper.uris = uris;
     }
 
     static parseCookie(cookies: Array<string>, key: string): string {
@@ -79,7 +87,7 @@ class Helper {
                 Cookie: Helper.credit ? `LEETCODE_SESSION=${Helper.credit.session};csrftoken=${Helper.credit.csrfToken}` : "",
                 "X-Requested-With": 'XMLHttpRequest',
                 "X-CSRFToken": Helper.credit ? Helper.credit.csrfToken : "",
-                Referer: options.referer || Config.uri.base,
+                Referer: options.referer || Helper.uris.base,
             },
             resolveWithFullResponse: options.resolveWithFullResponse || false,
             form: options.form || null,
@@ -89,11 +97,11 @@ class Helper {
 
     static async GraphQLRequest(options: GraphQLRequestOptions): Promise<any> {
         const client = new GraphQLClient(
-            Config.uri.graphql,
+            Helper.uris.graphql,
             {
                 headers: {
-                    Origin: options.origin || Config.uri.base,
-                    Referer: options.referer || Config.uri.base,
+                    Origin: options.origin || Helper.uris.base,
+                    Referer: options.referer || Helper.uris.base,
                     Cookie: `LEETCODE_SESSION=${Helper.credit.session};csrftoken=${Helper.credit.csrfToken};`,
                     "X-Requested-With": 'XMLHttpRequest',
                     "X-CSRFToken": Helper.credit.csrfToken,
@@ -104,6 +112,22 @@ class Helper {
             options.query,
             options.variables || {},
         );
+    }
+
+    static switchEndPoint(endPoint: EndPoint): void {
+        if (endPoint === EndPoint.US) {
+            const uris: Uris = Config.uri.us;
+            Helper.setUris(uris);
+            Leetcode.setUris(uris);
+            Problem.setUris(uris);
+            Submission.setUris(uris);
+        } else if (endPoint === EndPoint.CN) {
+            const uris: Uris = Config.uri.cn;
+            Helper.setUris(uris);
+            Leetcode.setUris(uris);
+            Problem.setUris(uris);
+            Submission.setUris(uris);
+        }
     }
 }
 
