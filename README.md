@@ -7,6 +7,11 @@
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/realVEct0r/leetcode-api)
 [![Build Status](https://travis-ci.org/realVEct0r/leetcode-api.svg?branch=master)](https://travis-ci.org/realVEct0r/leetcode-api)
 
+## Install
+* npm: `npm i leetcode-api-ts`
+* yarn: `yarn add leetcode-api-ts`
+
+
 ## Usage
 ```typescript
 (async (): Promise<void> => {
