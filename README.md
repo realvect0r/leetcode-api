@@ -76,6 +76,11 @@ I especially recommend you fetch base properties first because of the large numb
 * [ ] Support problems filter by categories.
 * [ ] Support problems filter by companies.
 
+## Test
+* `mv .env.example .env`
+* Update your leetcode account in `.env`
+* `yarn test`.
+
 ## Contribute
 * start: `yarn start`
 * build: `yarn build`

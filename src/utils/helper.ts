@@ -52,7 +52,12 @@ class Helper {
     }
 
     static difficultyMap(difficulty: number): ProblemDifficulty {
-        return difficulty;
+        switch (difficulty) {
+            case 1: return ProblemDifficulty.Easy;
+            case 2: return ProblemDifficulty.Medium;
+            case 3: return ProblemDifficulty.Hard;
+            default: return ProblemDifficulty.Easy;
+        }
     }
 
     static submissionStatusMap(submission: string): SubmissionStatus {

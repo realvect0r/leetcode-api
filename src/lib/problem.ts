@@ -34,6 +34,7 @@ class Problem {
             query: `
                 query getQuestionDetail($titleSlug: String!) {
                     question(titleSlug: $titleSlug) {
+                        questionId
                         title
                         difficulty
                         likes
@@ -60,6 +61,7 @@ class Problem {
             }
         });
         const question = response.question;
+        this.id = Number(question.questionId);
         this.title = question.title;
         this.difficulty = Helper.difficultyMap(question.difficulty);
         this.starred = question.isLiked !== null;
@@ -117,13 +119,13 @@ class Problem {
             offet += submission.length;
             submission.map(s => {
                 submissions.push(new Submission(
-                    s.id,
+                    Number(s.id),
                     s.isPending,
                     s.lang,
                     s.memory,
                     s.runtime,
                     Helper.submissionStatusMap(s.statusDisplay),
-                    s.timestamp,
+                    Number(s.timestamp),
                 ));
             });
         }
